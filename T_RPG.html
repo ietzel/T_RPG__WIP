@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tabletop RPG (Pathfinder-based)</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+
+<body>
+
+    <h6>Tabletop RPG (Pathfinder-based)</h6>
+	<p>
+		(currently selected:
+		<select id="choose System"> 
+			<option selected="selected">system ___</option>
+			<option></option>
+		</select>).
+	</p>
+    <p>
+		<button id="create System">Create</button> new system, 
+		<form id="new System"> named
+			<input type="text" value="system ___" id="system" minlength="1" maxlength="50">.
+		</form>
+	</p>
+	<p>
+		(<button id="create Diagram">Create</button> new
+		<select id="new Diagram">
+			<option selected="selected">Class</option>
+			<option></option>
+		</select> diagram).
+		<br>
+		(<button id="create Category">Create</button> new 
+		<select id="new Category">
+			<option selected="selected">Class</option>
+			<option></option>
+		</select> category).
+		<br>
+		(<button id="negotiate/profiteer">Negotiate/Profiteer</button>).
+		<p id="results">Results: n/a</p>
+	</p>
+	<p id="XP_wealth">XP: 0; Wealth: 0</p>
+	<p id="ethics_morality">Ethics: 0.5; Morality: 0.5</p>
+	<canvas id="systemCanvas" width="600" height="200"></canvas>
+	<script src='fabric.js'></script>
+	<script src="beep.js"></script>
+	<script src='initialization.js'></script>
+	<script src='Q/quaternity.js'></script>
+    <script src='main.js'></script>
+	<script src="midi.js"></script>
+</body>
+</html>

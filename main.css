@@ -1,0 +1,55 @@
+html {
+    font-family: sans-serif;
+	margin: auto;
+	max-width: 390px;
+}
+
+h1 {
+	font-size: 50px;
+}
+
+h2 {
+	font-size: 49px;
+}
+
+h3 {
+	font-size: 32px;
+}
+
+h4 {
+	font-size: 25px;
+}
+
+h5 {
+	font-size: 18px;
+}
+
+h6 {
+	font-size: 9px;
+}
+
+p, button, form, input, select, option, Textbox {
+    font-size: 8px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 10px solid rgb(128,128,128);
+    letter-spacing: 10px;
+    font-size: 1.0rem;
+}
+
+td, th {
+    border: 10px solid rgb(64,64,64);
+    border-width: 10px; 
+    border-style: solid;
+    padding: 10px 10px;
+}
+
+td {
+    text-align: center;
+}
+
+canvas {
+    background-color: "grey";
+}
