@@ -163,8 +163,9 @@ const quotes = [
         "Give your meat a good ol' rub... while I'll be in my studio, studio, working up some, art...",
         "Knowledge is power.",
         "Give us your counsel!",
-        "Your mind has multiple parts, and not all of them work together",
+        "Your mind includes multiple parts, and not all of them work together.",
         "Why don't you stop pretending to be in the para-olympics? They want you to give them a narrative!",
+        "Don't harsh my gig so hardcore, 'k cruster?"
         "I don't know half of you half as well as I should like; and I like less than half of you half as well as you deserve.",
         "Oh my goodness! Well, you're used to it! You'd better believe it!",
         "Get with the program, rabbit! No, you don't have to delete it.",
