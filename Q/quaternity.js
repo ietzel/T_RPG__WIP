@@ -147,7 +147,7 @@ const quotes = [
         "Brutal methods of execution have been recorded as follows: crucifixion, blood eagle, live burial, head-through-the-noose-on-fire...",
         "Hezekiel's whisker torture... ag ug-ug-ug-ug-ug! Get your chin-music on! Fo to the sho: big pimpin'!",
         "Meow means hungry, meow means thirsty, meow is the world of communication.",
-        "Crucified; skinhead, skinhead! Swizzleberry swirl
+        "Crucified; skinhead, skinhead! Swizzleberry swirl",
         "Hear-Hear!",
         "Oh, friend... dear friend, you are so mercifully free of the ravages of intelligence - and, yes, I know to be sorry to say such nice things.",
         "100 years from now when I'm dying on a hospital bed and I'm asked what my biggest regret was it will be that I turned on my internet and scrolled through the internet on that fateful day... I will never be able to recover from this. No amount of therapy will save me. No amount of prescription pills will let me recover. I am a shell. This memory is so bad my brain is physically rejecting it and now I have a headache every time I think about it. Why did you post this, thinking it was a good idea? You've permanently ruined my life because of this, I hope you're happy. I hope that one day this gets branded as a war crime and you get hauled off to prison, never to see the light of day again. The fact that you're already not in a psych ward for insanity is so baffling I have lost all faith in every kind of justice system. If you subscribe to any religion, you'd best spend the rest of your time atoning for this ultimate sin. Have a terrible day, I hope this creation of yours haunts you in your dreams.",
