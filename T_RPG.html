@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tabletop RPG (Pathfinder-based)</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+
+<body>
+
+    <h6>Tabletop RPG (Pathfinder-based)</h6>
+    <p>
+		<button id="create Character">Create</button> new character, 
+		<form id="new Character"> named
+			<input type="text" value="character ___" id="character" minlength="1" maxlength="50">.
+		</form>
+	</p>
+	<p>
+		(<button id="negotiate/profiteer">Negotiate/Profiteer</button>).
+		<p id="results">Results: n/a</p>
+	</p>
+	<p id="XP_wealth">XP: 0; Wealth: 0</p>
+	<p id="ethics_morality">Ethics: 0.5; Morality: 0.5</p>
+	<canvas id="canvas" width="425" height="375"></canvas>
+	<script src='fabric.js'></script>
+	<script src='perlin.js'></script>
+	<script src='init.js'></script>
+    <script src='main.js'></script>
+	<!--<script src='Q/quaternity.js'></script>-->
+</body>
+</html>
