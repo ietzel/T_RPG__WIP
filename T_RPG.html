@@ -9,19 +9,70 @@
 <body>
 
     <h6>Tabletop RPG (Pathfinder-based)</h6>
-    <p>
-		<button id="create Character">Create</button> new character, 
-		<form id="new Character"> named
-			<input type="text" value="character ___" id="character" minlength="1" maxlength="50">.
-		</form>
-	</p>
+	<canvas id="canvas" width="250" height="250"></canvas>
 	<p>
-		(<button id="negotiate/profiteer">Negotiate/Profiteer</button>).
+		<button id="play">play</button>
+		</br><button id="local">(local)</button><button id="geographic">(geographic)</button><button id="planar">(planar)</button>
+		<p id="scale">Scale: Medium</p>
 		<p id="results">Results: n/a</p>
 	</p>
 	<p id="XP_wealth">XP: 0; Wealth: 0</p>
-	<p id="ethics_morality">Ethics: 0.5; Morality: 0.5</p>
-	<canvas id="canvas" width="425" height="375"></canvas>
+	<p>
+		<form id="new Character" name="nC"> 
+			</br>Name: <input type="text" value="character ___" id="character_name" minlength="1" maxlength="20">.
+			</br>Morality: <input type="number" value="0.5" id="morality" min="0.0" max="1.0"> (0.0 to 0.3 = Chaotic, 0.4 to 0.6 = Neutral 0.7 to 1.0 = Lawful)
+			</br>Ethics: <input type="number" value="0.5" id="ethics" min="0.0" max="1.0"> (0.0 to 0.3 = Evil, 0.4 to 0.6 = Neutral 0.7 to 1.0 = Good)
+			</br>Strength: <input type="integer" value="10" id="str" min="1" max="22">
+			</br>Dexterity: <input type="integer" value="10" id="dex" min="1" max="22">
+			</br>Constitution: <input type="integer" value="10" id="con" min="1" max="22">
+			</br>Intelligence: <input type="integer" value="10" id="int" min="1" max="22">
+			</br>Wisdom: <input type="integer" value="10" id="wis" min="1" max="22">
+			</br>Charisma: <input type="integer" value="10" id="cha" min="1" max="22">
+			</br>Celestial <input type="radio" name="rb_1" id="celestial">, 
+				 Fiendish <input type="radio" name="rb_1" id="fiendish">, 
+				 Half-Dragon <input type="radio" name="rb_1" id="h_d">, 
+				 Skeletal Champion <input type="radio" name="rb_1" id="s_c">, 
+				 Lycanthrope <input type="radio" name="rb_1" id="lycanthrope">.
+			</br>Giant <input type="checkbox" id="giant">, 
+				 Advanced <input type="checkbox" id="advanced">.
+				 
+			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Swim" id="Swim">	Swim,
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Fly" id="Fly">	Fly,
+			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Acrobatics" id="Acrobatics">	Acrobatics, 
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Disable Device" id="Disable Device">	Disable Device,
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Sleight of Hand" id="Sleight of Hand">	Sleight of Hand,
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Escape Artist" id="Escape Artist">	Escape Artist,
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Stealth" id="Stealth">	Stealth, 
+													
+			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Knowledge(engineering)" id="Knowledge(engineering)">	Knowledge(engineering),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Knowledge(history)" id="Knowledge(history)">	Knowledge(history),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Knowledge(nature)" id="Knowledge(nature)">	Knowledge(nature), 
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Knowledge(planes)" id="Knowledge(planes)">	Knowledge(planes), 
+			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Heal" id="Heal">	Heal,
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Perception" id="Perception">	Perception,
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Diplomacy" id="Diplomacy">	Diplomacy,
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Disguise" id="Disguise">	Disguise
+													
+			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Craft(alchemy)" id="Craft(alchemy)">	Craft(alchemy),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Craft(cloth/clothing)" id="Craft(cloth/clothing)">	Craft(cloth/clothing),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Craft(food)" id="Craft(food)">	Craft(food),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Craft(traps)" id="Craft(traps)">	Craft(traps),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Craft(arms&armor)" id="Craft(arms&armor)">	Craft(arms&armor),
+			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(woodcutter)" id="Profession(woodcutter)">	Prfsn(wd ctr),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(fisherman)" id="Profession(fisherman)">	Prfsn(fshrmn),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(farmer)" id="Profession(farmer)">	Prfsn(frmr), 
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(miner)" id="Profession(miner)">	Prfsn(mnr),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(soldier)" id="Profession(soldier)">	Prfsn(sldr), 
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(cook)" id="Profession(cook)">	Prfsn(cook), 
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(architect/engineer)" id="Profession(architect/engineer)">	Prfsn(archtct/engnr),
+			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Perform(percussion/keyboards)" id="Perform(percussion/keyboards)">	Prfrm(percussion/keyboardss),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Perform(strings)" id="Perform(strings)">	Prfrm(strings), 
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Perform(winds)" id="Perform(winds)">	Prfrm(winds),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Perform(act/dance)" id="Perform(act/dance)">	Prfrm(act/dance),
+			<input type="checkbox" name="skill" onclick="cb_limit()" value="Perform(sing/oratory)" id="Perform(sing/oratory)">	Prfrm(sing/oratory),
+		
+		</form> 
+	</p>
 	<script src='fabric.js'></script>
 	<script src='perlin.js'></script>
 	<script src='init.js'></script>
