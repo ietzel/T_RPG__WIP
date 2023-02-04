@@ -21,19 +21,10 @@ document.getElementById("play").addEventListener("click", function() {
 			document.getElementById("cha").value, 
 			document.getElementById("celestial").checked || document.getElementById("fiendish").checked,
 			document.getElementById("h_d").checked,
-			document.getElementById("s_c").checked,
 			document.getElementById("lycanthrope").checked,
 			document.getElementById("giant").checked,
 			document.getElementById("advanced").checked
 		);
-		/*
-		for(var i=0; i<Skills.length; i++) {
-			console.log(document.getElementById(Skills[i].name));
-			if(document.getElementById(Skills[i].name).checked) {
-				characters[0].class_skills.push(Skills[i]);
-			}
-		}
-		*/
 	}	
 });
 
@@ -79,19 +70,17 @@ let grass = "#7ec850";
 let stone = "#676767";
 let snow = "#fffafa";
 
-function createCharacter(name, ethics, morals, str, dex, con, int, wis, cha, c_or_f, h_d, s_c, lycanthrope, giant, advanced, shapechange) {
+function createCharacter(name, ethics, morals, str, dex, con, int, wis, cha, c_or_f, h_d, lycanthrope, giant, advanced) {
 	this.name = "Character";
 	this.ethics = 0.5;
 	this.morals = 0.5;
 	this.level = 1;
 	this.XP = 200;
 	this.budget = Math.round(787*Math.pow(2, 0.365*this.level), 2);
-	this.racial_HD = 0;
-	this.size = "M";
 	this.type = "Humanoid";
 	this.shapechange;
 	this.abilities = [10, 10, 10, 11, 11, 11]; //str, dex, con, int, wis, cha
-	this.templates = [false, false, false, false, false, false]; //c_or_f, h_d, s_c, lycanthrope, giant, advanced
+	this.templates = [false, false, false, false, false];
 	this.speeds = [30, 0, 0, 0, 0, 0]; //land, climb, fly, swim, burrow;
 	this.x = 0;
 	this.y = 0;
@@ -136,19 +125,6 @@ function createCharacter(name, ethics, morals, str, dex, con, int, wis, cha, c_o
 		this.abilities[5] += 2;
 		this.bonuses += 4;
 		this.speeds[2] = this.speeds[0]*2; 
-	}
-	if(s_c) {
-		this.templates[2] = true;
-		this.class_skills.push(Skills[0]);
-		this.class_skills.push(Skills[2]);
-		this.class_skills.push(Skills[7]);
-		this.class_skills.push(Skills[25]);
-		this.class_skills.push(Skills[32]);
-		this.racial_HD = 2;
-		this.type = "Undead";
-		this.abilities[0] += 2;
-		this.abilities[1] += 2;
-		this.bonuses[0] += 2;
 	}
 	if(lycanthrope) {
 		this.shapechange = shapechange;
@@ -210,29 +186,12 @@ const Skills = [
 	new createSkill("Escape Artist", "dex"),
 	new createSkill("Sleight of Hand", "dex"),
 	new createSkill("Stealth", "dex"),
-	new createSkill("Craft(alchemy)", "int"),
-	new createSkill("Craft(cloth/clothing)", "int"),
-	new createSkill("Craft(food)", "int"),
-	new createSkill("Craft(traps)", "int"),
-	new createSkill("Craft(arms&armor)", "int"),
-	new createSkill("Knowledge(engineering)", "int"),
-	new createSkill("Knowledge(history)", "int"),
-	new createSkill("Knowledge(nature)", "int"),
-	new createSkill("Knowledge(planes)", "int"),
-	new createSkill("Profession(woodcutter)", "wis"),
-	new createSkill("Profession(fisherman)", "wis"),
-	new createSkill("Profession(farmer)", "wis"),
-	new createSkill("Profession(miner)", "wis"),
-	new createSkill("Profession(soldier)", "wis"),
-	new createSkill("Profession(cook)", "wis"),
-	new createSkill("Profession(architect/engineer)", "wis"),
+	new createSkill("Craft", "int"),
+	new createSkill("Knowledge", "int"),
+	new createSkill("Profession", "wis"),
 	new createSkill("Heal", "wis"),
 	new createSkill("Perception", "wis"),
-	new createSkill("Perform(percussion/keyboards)", "cha"),
-	new createSkill("Perform(strings)", "cha"),
-	new createSkill("Perform(winds) ", "cha"),
-	new createSkill("Perform(act/dance)", "cha"),
-	new createSkill("Perform(sing/oratory)", "cha"),
+	new createSkill("Perform", "cha"),
 	new createSkill("Diplomacy", "cha"),
 	new createSkill("Disguise", "cha")
 ];

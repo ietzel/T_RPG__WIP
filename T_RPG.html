@@ -28,11 +28,23 @@
 			</br>Intelligence: <input type="integer" value="10" id="int" min="1" max="22">
 			</br>Wisdom: <input type="integer" value="10" id="wis" min="1" max="22">
 			</br>Charisma: <input type="integer" value="10" id="cha" min="1" max="22">
-			</br>Celestial <input type="radio" name="rb_1" id="celestial">, 
-				 Fiendish <input type="radio" name="rb_1" id="fiendish">, 
-				 Half-Dragon <input type="radio" name="rb_1" id="h_d">, 
-				 Skeletal Champion <input type="radio" name="rb_1" id="s_c">, 
-				 Lycanthrope <input type="radio" name="rb_1" id="lycanthrope">.
+			</br>(Outer Sphere Creature)
+				Celestial <input type="radio" name="rb_1" id="celestial">, 
+				Fiendish <input type="radio" name="rb_1" id="fiendish">, 
+			</br>(Half-Dragon): 
+				?	30-foot cone of electricity<input type="radio" name="rb_2" id="hd1">, 
+				Blue/Bronze	60-foot line of electricity<input type="radio" name="rb_2" id="hd2">, 
+				Gold/Red	30-foot cone of fire<input type="radio" name="rb_2" id="hd3">, 
+				Brass	60-foot line of fire<input type="radio" name="rb_2" id="hd4">, 
+				Green	30-foot cone of acid<input type="radio" name="rb_2" id="hd5">, 
+				Black/Copper	60-foot line of acid<input type="radio" name="rb_2" id="hd6">, 
+				Silver/White	30-foot cone of cold<input type="radio" name="rb_2" id="hd7">, 
+				?	60-foot line of cold<input type="radio" name="rb_2" id="hd8">, 
+			</br>Lycanthrope 
+				Tiny <input type="radio" name="rb_3" id="l_-2">,
+				Small <input type="radio" name="rb_3" id="l_-1">,
+				Medium <input type="radio" name="rb_3" id="l_0">,
+				Large <input type="radio" name="rb_3" id="l_1">,
 			</br>Giant <input type="checkbox" id="giant">, 
 				 Advanced <input type="checkbox" id="advanced">.
 				 
@@ -44,32 +56,15 @@
 			<input type="checkbox" name="skill" onclick="cb_limit()" value="Escape Artist" id="Escape Artist">	Escape Artist,
 			<input type="checkbox" name="skill" onclick="cb_limit()" value="Stealth" id="Stealth">	Stealth, 
 													
-			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Knowledge(engineering)" id="Knowledge(engineering)">	Knowledge(engineering),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Knowledge(history)" id="Knowledge(history)">	Knowledge(history),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Knowledge(nature)" id="Knowledge(nature)">	Knowledge(nature), 
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Knowledge(planes)" id="Knowledge(planes)">	Knowledge(planes), 
+			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Knowledge" id="Knowledge">Knowledge,
 			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Heal" id="Heal">	Heal,
 			<input type="checkbox" name="skill" onclick="cb_limit()" value="Perception" id="Perception">	Perception,
 			<input type="checkbox" name="skill" onclick="cb_limit()" value="Diplomacy" id="Diplomacy">	Diplomacy,
 			<input type="checkbox" name="skill" onclick="cb_limit()" value="Disguise" id="Disguise">	Disguise
 													
-			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Craft(alchemy)" id="Craft(alchemy)">	Craft(alchemy),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Craft(cloth/clothing)" id="Craft(cloth/clothing)">	Craft(cloth/clothing),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Craft(food)" id="Craft(food)">	Craft(food),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Craft(traps)" id="Craft(traps)">	Craft(traps),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Craft(arms&armor)" id="Craft(arms&armor)">	Craft(arms&armor),
-			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(woodcutter)" id="Profession(woodcutter)">	Prfsn(wd ctr),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(fisherman)" id="Profession(fisherman)">	Prfsn(fshrmn),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(farmer)" id="Profession(farmer)">	Prfsn(frmr), 
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(miner)" id="Profession(miner)">	Prfsn(mnr),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(soldier)" id="Profession(soldier)">	Prfsn(sldr), 
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(cook)" id="Profession(cook)">	Prfsn(cook), 
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Profession(architect/engineer)" id="Profession(architect/engineer)">	Prfsn(archtct/engnr),
-			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Perform(percussion/keyboards)" id="Perform(percussion/keyboards)">	Prfrm(percussion/keyboardss),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Perform(strings)" id="Perform(strings)">	Prfrm(strings), 
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Perform(winds)" id="Perform(winds)">	Prfrm(winds),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Perform(act/dance)" id="Perform(act/dance)">	Prfrm(act/dance),
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Perform(sing/oratory)" id="Perform(sing/oratory)">	Prfrm(sing/oratory),
+			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Craft" id="Craft">	Craft,
+			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Profession" id="Profession()"> Profession,
+			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Perform" id="Perform">	Perform
 		
 		</form> 
 	</p>

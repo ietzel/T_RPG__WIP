@@ -7,7 +7,7 @@ characters[1][0] = new createCharacter(
 	names[0], 
 	0.5, 0.5, 
 	10, 10, 10, 11, 11, 11,
-	false, false, false, false, false, true
+	0, 0, 0, 0, 1
 );
 
 
