@@ -1,6 +1,38 @@
 var running = false;
 const scales = ["(local)", "(geographic)", "(planar)"];
 var scale = 1;
+const minigames = [
+	createMinigame(
+		"",
+		"",
+		""
+	),
+	createMinigame(
+		"",
+		"",
+		""
+	), 
+	createMinigame(
+		"scavenger hunt",
+		"It is not safe to travel, though a bunker may suffice for now.",
+		"Ammo, as well as some food, is found to continue on a journey."
+	),  
+	createMinigame(
+		"sentient jungle",
+		"Whatever produced the knots in this jungle will surely not be safe enough to encounter.",
+		"There is an unsettling ring of 8 trees in the center of the jungle."
+	),
+	createMinigame(
+		"snakeoil gladiator arena",
+		"It seems to dangerous to partake in the games hosted in the mountain range.",
+		"Once piecemeal armour is selected in the armoury, the opponent is met in the arena."
+	),
+	createMinigame(
+		"kyton castle",
+		"The castle appears too unusual for this snowy terrain.",
+		"Upon entering the castle, you are offered an oppoirtunity to participate in some experiments: after being taken to a room, and being offered a seat on a reclining chair, they speak of the imperfections of humanity, and how they may be changed to perfection through pain: they inform you that while the problems of your organs are difficult to remove, your limbs may be approximated at a worth that may be exhanged for rather painfully-integrated prosthetics. You claim that some information of yours may be a more preferrable currency, and thereby exit the castle after informing them of the recent ways of nearby mortals."
+	)
+];
 
 document.getElementById("play").addEventListener("click", function() {
 	if(running) {
@@ -9,49 +41,15 @@ document.getElementById("play").addEventListener("click", function() {
 	} else {
 		running = true;
 		document.getElementById("play").innerHTML = "pause";
-		characters[0][0] = new createCharacter(
-			document.getElementById("character_name").value, 
-			parseFloat(document.getElementById("ethics").value).toFixed(1), 
-			parseFloat(document.getElementById("morality").value).toFixed(1), 
-			document.getElementById("str").value, 
-			document.getElementById("dex").value, 
-			document.getElementById("con").value, 
-			document.getElementById("int").value, 
-			document.getElementById("wis").value, 
-			document.getElementById("cha").value, 
-			document.getElementById("celestial").checked || document.getElementById("fiendish").checked,
-			document.getElementById("h_d").checked,
-			document.getElementById("lycanthrope").checked,
-			document.getElementById("giant").checked,
-			document.getElementById("advanced").checked
-		);
-	}	
+	}
 });
 
-function cb_limit() {
-	let total = 0, limit = 10;
-	for(var i=0; i < document.nC.skill.length; i++){
-		if(document.nC.skill[i].checked){
-			total++;
-		}
-		if(total > limit){
-			alert("10 class skills must be selected") 
-			document.nC.skill[i].checked = false ;
-			return false;
-		}
-	}
+function score_to_mod(score) {
+	return Math.floor((score-10)/2);
 }
 
 function randomInt(a, b) {
 	return (Math.random()*(b-a))+a;
-}
-
-function roll(n, s) {
-	let total = 0;
-	for(var i=0; i<n; i++) {
-		total += randomInt(1, s);
-	}
-	return total;
 }
 
 var canvas = new fabric.Canvas("canvas");
@@ -59,10 +57,10 @@ var canvas = new fabric.Canvas("canvas");
 const radius = 7, slant = 6;
 const width = 24, height = 21;
 let clickX = canvas.width, clickY = canvas.height;
-let partyX = Math.round(width/2, 0), partyY = Math.round(height/2, 0);
-let characterX = partyX, characterY = partyY, groupX = partyX, groupY = partyY;
+let partyX = 12, partyY = 10;
+let characterX = partyX, characterY = partyY, groupX = partyX, groupY = partyY; 
 
-let noiseScale = 1/150
+let noiseScale = 1/150;
 let ocean = "#008dc4";
 let shore = "#00a9cc";
 let sand = "#eecda3";
@@ -78,15 +76,13 @@ function createCharacter(name, ethics, morals, str, dex, con, int, wis, cha, c_o
 	this.XP = 200;
 	this.budget = Math.round(787*Math.pow(2, 0.365*this.level), 2);
 	this.type = "Humanoid";
-	this.shapechange;
 	this.abilities = [10, 10, 10, 11, 11, 11]; //str, dex, con, int, wis, cha
 	this.templates = [false, false, false, false, false];
 	this.speeds = [30, 0, 0, 0, 0, 0]; //land, climb, fly, swim, burrow;
 	this.x = 0;
 	this.y = 0;
 	this.bonuses = [0, 0]; //nat armor, initiative
-	this.class_skill_limit = 10;
-	this.class_skills = [];
+	this.equipment;
 	if(name) {
 		this.name = name;
 	}
@@ -100,7 +96,7 @@ function createCharacter(name, ethics, morals, str, dex, con, int, wis, cha, c_o
 		this.abilities[0] = str;
 	}
 	if(dex) {
-		this.abilities[0] = dex;
+		this.abilities[1] = dex;
 	}
 	if(con) {
 		this.abilities[2] = con;
@@ -115,10 +111,10 @@ function createCharacter(name, ethics, morals, str, dex, con, int, wis, cha, c_o
 		this.abilities[5] = cha;
 	}
 	if(c_or_f) {
-		this.templates[0] = true;
+		this.templates[0] = c_or_f;
 	}
 	if(h_d) {
-		this.templates[1] = true;
+		this.templates[1] = h_d;
 		this.abilities[0] += 8;
 		this.abilities[2] += 6;
 		this.abilities[3] += 2;
@@ -127,14 +123,13 @@ function createCharacter(name, ethics, morals, str, dex, con, int, wis, cha, c_o
 		this.speeds[2] = this.speeds[0]*2; 
 	}
 	if(lycanthrope) {
-		this.shapechange = shapechange;
-		this.templates[3] = true;
-		this.abilities[0] += 2+((this.shapechange+1)*2);
-		this.abilities[1] -= this.shapechange*2;
+		this.templates[3] = lycanthrope;
+		this.abilities[0] += 2+((lycanthrope+1)*2);
+		this.abilities[1] -= lycanthrope*2;
 		this.abilities[2] += 2;
 		this.abilities[4] += 2;
 		this.abilities[5] -= 2;
-		this.bonuses[0] += 2+this.shapechange;
+		this.bonuses[0] += 2+lycanthrope;
 	}
 	if(giant) {
 		this.templates[4] = true;
@@ -154,6 +149,7 @@ function createCharacter(name, ethics, morals, str, dex, con, int, wis, cha, c_o
 		this.abilities[5] += 4;
 		this.bonuses[0] += 2;
 	}
+	
 	this.f_updateSaves = function([fort, ref, will]) {
 		this.saves = [fort, ref, will];
 	}
@@ -165,6 +161,18 @@ function createCharacter(name, ethics, morals, str, dex, con, int, wis, cha, c_o
 		this.skill = skill; 
 		this.hp_bonus = hp_bonus; 
 	}	
+}
+
+function fr_action(character, dX, dY, target, interaction) {
+	if(dX+dY <= 30) {
+		character.x += dX;
+		character.y += dY;
+	}
+	if(interaction == "attack") {
+		//target.;
+	} else {
+		//;
+	}
 }
 
 const Feats = [
@@ -196,14 +204,13 @@ const Skills = [
 	new createSkill("Disguise", "cha")
 ];
 
-function createType(name, HD_type, skills_p_l, BAB, [fort, ref, will], [llv, dv, scent], []) {
+function createEquipment(name, mod, target, value, weight, attack) {
 	this.name = name;
-	this.HD_type = 8;
-	this.skills_p_l = skills_p_l; 
-	this.BAB = BAB;
-	this.saves = [fort, ref, will]; 
-	this.senses = [llv, dv, scent];
-	this.class_skills = [];
+	this.mod = mod;
+	this.target = target;
+	this.value = value;
+	this.weight = weight;
+	this.attack = attack;	
 }	
 
 function createAttack(name, atk_mod, dmg_mod, ...dmg) {
@@ -217,22 +224,11 @@ function createDamage(name, dmg, type) {
 	this.name = name;
 	this.dmg = dmg;
 	this.type = type;
-}	
+}
 
 function createSkill(name, mod) {
 	this.name = name;
 	this.mod = mod;
-	this.ranks = 0;
-	this.class_skill = false;
-}
-
-function createEquipment(name, mod, target, value, weight, [attack]) {
-	this.name = name;
-	this.mod = mod;
-	this.target = target;
-	this.value = value, 
-	this.weight = weight;
-	this.abilities = [attack];	
 }	
 
 function pickColor(i, j, h) {
@@ -292,8 +288,6 @@ function createSquare(x, y, x_pos, y_pos, c) {
 			fill: c,  
             stroke: "black",
 			strokeWidth: 0.33,
-			//borderColor: 'black',
-			//cornerColor: 'black',
 			selectable: false
 		}
 	);
@@ -320,8 +314,6 @@ function createHexagon(x, y, x_pos, y_pos) {
 			fill: this.c,
 			stroke: 'black',  
             strokeWidth: 0.5,
-			//borderColor: 'black',
-			//cornerColor: 'black',
 			selectable: false
 		}
 	);
@@ -351,9 +343,13 @@ function createTriangle(x, y, x_pos, y_pos) {
 			fill: "rgba("+(128+Math.random()*64)+","+(128+Math.random()*64)+","+(128+Math.random()*64)+","+(0.25+Math.random()*0.75)+")",
 			stroke: 'black',  
             strokeWidth: 0.5,
-			//borderColor: 'black',
-			//cornerColor: 'black',
 			selectable: false
 		}
 	);
+}
+
+function createMinigame(name, o1, o2) {
+	this.name = name;
+	this.o1 = o1;
+	this.o2 = o2;
 }

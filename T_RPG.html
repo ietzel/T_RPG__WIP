@@ -32,14 +32,16 @@
 				Celestial <input type="radio" name="rb_1" id="celestial">, 
 				Fiendish <input type="radio" name="rb_1" id="fiendish">, 
 			</br>(Half-Dragon): 
+			<table>
 				?	30-foot cone of electricity<input type="radio" name="rb_2" id="hd1">, 
-				Blue/Bronze	60-foot line of electricity<input type="radio" name="rb_2" id="hd2">, 
-				Gold/Red	30-foot cone of fire<input type="radio" name="rb_2" id="hd3">, 
-				Brass	60-foot line of fire<input type="radio" name="rb_2" id="hd4">, 
-				Green	30-foot cone of acid<input type="radio" name="rb_2" id="hd5">, 
-				Black/Copper	60-foot line of acid<input type="radio" name="rb_2" id="hd6">, 
-				Silver/White	30-foot cone of cold<input type="radio" name="rb_2" id="hd7">, 
-				?	60-foot line of cold<input type="radio" name="rb_2" id="hd8">, 
+				Blue/Bronze	60-foot line of electricity<input type="radio" name="rb_2" id="hd2"> 
+				Gold/Red	30-foot cone of fire<input type="radio" name="rb_2" id="hd3"> 
+				Brass	60-foot line of fire<input type="radio" name="rb_2" id="hd4"> 
+				Green	30-foot cone of acid<input type="radio" name="rb_2" id="hd5">
+				Black/Copper	60-foot line of acid<input type="radio" name="rb_2" id="hd6"> 
+				Silver/White	30-foot cone of cold<input type="radio" name="rb_2" id="hd7"> 
+				?	60-foot line of cold<input type="radio" name="rb_2" id="hd8">
+			</table>
 			</br>Lycanthrope 
 				Tiny <input type="radio" name="rb_3" id="l_-2">,
 				Small <input type="radio" name="rb_3" id="l_-1">,
@@ -48,23 +50,25 @@
 			</br>Giant <input type="checkbox" id="giant">, 
 				 Advanced <input type="checkbox" id="advanced">.
 				 
-			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Swim" id="Swim">	Swim,
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Fly" id="Fly">	Fly,
-			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Acrobatics" id="Acrobatics">	Acrobatics, 
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Disable Device" id="Disable Device">	Disable Device,
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Sleight of Hand" id="Sleight of Hand">	Sleight of Hand,
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Escape Artist" id="Escape Artist">	Escape Artist,
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Stealth" id="Stealth">	Stealth, 
-													
-			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Knowledge" id="Knowledge">Knowledge,
-			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Heal" id="Heal">	Heal,
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Perception" id="Perception">	Perception,
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Diplomacy" id="Diplomacy">	Diplomacy,
-			<input type="checkbox" name="skill" onclick="cb_limit()" value="Disguise" id="Disguise">	Disguise
-													
-			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Craft" id="Craft">	Craft,
-			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Profession" id="Profession()"> Profession,
-			</br><input type="checkbox" name="skill" onclick="cb_limit()" value="Perform" id="Perform">	Perform
+			</br><input type="integer" value="0" id="Swim" name="skill" max="20">Swim,
+			<input type="integer" value="0"	id="Fly" name="skill" max="20">Fly,
+			</br><input type="integer" value="0" id=" Acrobatics" name="skill" max="20">Acrobatics, 
+			<input type="integer" value="0"	id="Disable Device"	name="skill" max="20">Disable Device,
+			<input type="integer" value="0"	id="Sleight of Hand" name="skill" max="20">Sleight of Hand,
+			<input type="integer" value="0"	id="Escape Artist" name="skill" max="20">Escape Artist,
+			<input type="integer" value="0"	id="Stealth" name="skill" max="20">Stealth,
+												
+			</br><input type="integer" value="0" id="Knowledge"	name="skill" max="20">Knowledge,
+			</br><input type="integer" value="0" id="Heal" name="skill" max="20">Heal,
+			<input type="integer" value="0"	id="Perception"	name="skill" max="20">Perception,
+			<input type="integer" value="0"	id="Diplomacy" name="skill" max="20">Diplomacy,
+			<input type="integer" value="0"	id="Disguise" name="skill" max="20">Disguise,
+												
+			</br><input type="integer" value="0" id="Craft"	name="skill" max="20">Craft,
+			</br><input type="integer" value="0" id="Profession" name="skill" max="20">Profession,
+			</br><input type="integer" value="0" id="Perform" name="skill" max="20">Perform
+			
+			</br><p id="skill_total">Skill points allocated: 0/0</p>
 		
 		</form> 
 	</p>

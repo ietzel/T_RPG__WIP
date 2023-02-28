@@ -1,18 +1,11 @@
 var names = ["Enemy"];
-var characters = [[],[]];
+var characters = [[], []]; 
 var planes = [];
 var characterTetra, partyHex, groupTri;
+var squares_moved = 0;
+var enemies = 4, allies = 0;
 
-characters[1][0] = new createCharacter(
-	names[0], 
-	0.5, 0.5, 
-	10, 10, 10, 11, 11, 11,
-	0, 0, 0, 0, 1
-);
-
-
-
-function setup() {
+(function setup() {
 	for(var i=0; i<width; i+=2) {
 		planes[i] = [];
 		planes[i+1] = [];
@@ -43,8 +36,41 @@ function setup() {
 		}	
 	}
 	redraw(1);
-}
+	for(var i=1; i<allies+1; i++) {
+		characters[0][i] = new createCharacter(
+			names[0]+" "+(i+1), 
+			0.5, 0.5, 
+			10, 10, 10, 11, 11, 11,
+			false, false, false, false, true
+		);
+		characters[1][i].x = i;
+		characters[1][i].y = i;
+	}	
+	for(var i=0; i<enemies; i++) {
+		characters[1][i] = new createCharacter(
+			names[0]+" "+(i+1), 
+			0.5, 0.5, 
+			10, 10, 10, 11, 11, 11,
+			false, false, false, false, true
+		);
+		characters[1][i].x = i;
+		characters[1][i].y = i;
+	}	
+})();
 
+function round() {
+	let s_m = squares_moved%6;
+	while(s_m < 7) {
+		s_m = squares_moved%6;
+	}
+	prompt("Type attack to attack, or type the name of a skill");
+	for(var i=0; i<enemies; i++) {
+		fr_action(characters[1][i], 3, 3, characters[1][i], "attack");
+	}
+	for(var i=0; i<enemies; i++) {
+		fr_action(characters[1][i], 3, 3, characters[0][0], "attack");
+	}
+}
 
 function redraw(scale) {
 	if(scale == 0) {
@@ -70,6 +96,28 @@ function redraw(scale) {
 			}
 		);
 		canvas.add(characterTetra);
+		for(var i=0; i<characters[1].length; i++) {
+			enemyTetra = new fabric.Polygon(
+				[
+					{ x: characters[1][i].x*radius, y: characters[1][i].y*radius },
+					{ x: (characters[1][i].x+1)*radius, y: characters[1][i].y*radius },
+					{ x: (characters[1][i].x+1)*radius, y: (characters[1][i].y+1)*radius },
+					{ x: characters[1][i].x*radius, y: (characters[1][i].y+1)*radius }
+				], 
+				{
+					stroke: 'black',  
+					strokeWidth: 0.75,
+					//borderColor: 'black',
+					//cornerColor: 'black',
+					opacity: 0.33,
+					selectable: false
+				}
+			);
+			canvas.add(enemyTetra);
+		}	
+		while(running) {
+			round();
+		}
 	} else if(scale == 1) {
 		for(var i=0; i<width; i++) {
 			for(var j=0; j<height; j++) {
@@ -109,8 +157,6 @@ function redraw(scale) {
 				fill: "black",
 				stroke: 'black',  
 				strokeWidth: 0.25,
-				//borderColor: 'black',
-				//cornerColor: 'black',
 				selectable: false
 			}
 		);
@@ -141,7 +187,6 @@ function clear() {
 		}
 		canvas.remove(groupTri);
 	}
-	
 }
 
 function characterTetraChange(dX, dY) {
@@ -221,12 +266,14 @@ window.addEventListener('keydown', (e) => {
     }
     if(scale == 0) {
 		characterTetraChange(dX, dY);
+		squares_moved+=(dX+dY);
 	} else if(scale == 1) {
 		partyHexChange(dX, dY);
 	} else if(scale == 2) {
 		groupTriChange(dX, dY);
 	}
 });
+
 document.getElementById("local").addEventListener("click", function() {
 	clear(scale);
 	scale = 0;
@@ -247,13 +294,3 @@ document.getElementById("planar").addEventListener("click", function() {
 	redraw(scale);
 	document.getElementById("scale").innerHTML = "Scale: "+scales[scale];
 });
-			
-
-setup();
-/*
-setInterval(function() {
-    if(running) {
-		draw();
-	}
-}, 3000);
-*/
