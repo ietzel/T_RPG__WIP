@@ -1,63 +1,9 @@
-var avatar_xp = 0;
-var wealth = 0;
-var ethics = 0.5;
-var morality = 0.5;
-var sections = [];
-
-function createDirection(name, alignment, element, species) {
-    this.name = name;
-    this.alignment = alignment;
-    this.element = element;
-    this.species = species;
-}
-
-function createQuarter(name, lang, power, military) {
-    this.name = name;
-    if(lang) {
-        this.lang = lang;
-    }
-    if(power) {
-        this.power = power;
-    }
-    if(military) {
-        this.military = military;
-    }
-}
-
-function negotiate_profiteer() {
-    dAvatarXP = 1;
-    dWealth = 1;
-    avatar_xp += dAvatarXP;
-    wealth += dWealth;
-    var i = Math.ceil(Math.random()*4)-1;
-    if(i < 2) {
-        morality += -0.1;
-        if(i < 1) {
-            ethics += 0.1;
-        } else {
-            ethics += -0.1;
-        }
-    } else {
-        morality += 0.1;
-        if(i > 2) {
-            ethics += 0.1;
-        } else {
-            ethics += -0.1;
-        }
-    }
-    document.getElementById("results").innerHTML = "Results: " + quotes[i][Math.ceil(Math.random()*quotes[i].length)-1];
-    document.getElementById("XP_wealth").innerHTML = "XP: " + avatar_xp + "; Wealth: " + wealth;
-    document.getElementById("ethics_morality").innerHTML = "Ethics: " + ethics + "; Morality: " + morality + "\n"; 
-    play(melodies[i][Math.ceil(Math.random()*melodies[i].length)-1]);
-}
-
 const quotes = [
-    NF = [
+    CG = [
         "Let me check what I have in my speciality cognitive-affective empathy matrix... hold on, just a couple of transforms, and maybe some of ideas will get a peter hard... eh, I think not. Stinkyfoot! With grease! Rub-a-dub-dub! Holy mackerel! Coconut chocolate cake! They were off like a turd of hurdles - I mean, a herd of turtles! Mama curry! I like some toast with my pills! I have diabetes, and neuropathy II! Good... night; ...it's hotter-than-a-pistol! We don't need any o' them...",
         "It's very funny to be a frog. You can dive into the water, and cross the rivers and the oceans, and you can jump all the time and everywhere. Do you want to play with me? We can be a whole group of friends, a whole group of frogs, jumping into the streets.",
         "Now those are some serious castles in the sky: chasing rainbows for a lifetime, then left to go, like shadows from the sun. Whoa, Heaven let your light shine down!",
         "When it's Christmas at ground zero, it's time for the season of bells... you don't wanna know man! Well, the change is here, and the future clear, I can feel it coming; so full of hate, it's getting late; yeah, I know it's coming. This land is my land, this land is my land, i've got some hot sauce, with some ghost pepper, if you don't get off, i'll make you drink it: this land, is private property!",
-        "Maybe, if the geneva convention permits, we can try to hire a suicide forest chainsaw seppuku drill seargent - I mean, live organ donation tutor: kidney, lung, testicle, arm, leg! Such beautiful assets plus vroom-vroom makes a truly macabre museum to behold!",
         "Nobody expects the knights of the spanish inquisition who say Ni! You will stay in the rack, and attract... a herrer; and you will sit in the comfy chair, and fetch... a shrubber!",
         "It is I, the plague doctor: would you like to go sparring? Please, sir: may I please have some more?",
         "Dark corner the square; intelligence is disease... The sands of time, were eroded by, the river, of constant change.",
@@ -76,10 +22,12 @@ const quotes = [
         "A nameless baby was left on a random porch, and began to do pull-ups on the door knocker! Scream; scream; little maggot!",
         "Are you out of paper & ink? Well quit, printer: that's all you had to say!"
     ],
-    NT = [
+	CN = [
+		"To be fair, you have to have a very high intelligence score to understand animism. The humor is extremely subtle, and without a solid grasp of historical theology most of the jokes will go over a typical viewer's head. There's also Sir Edward Taylor's anthropological outlook, which is deftly woven into his characterisation - his personal philosophy draws heavily from  literature, for instance. The fans understand this stuff; they have the intellectual capacity to truly appreciate the depths of these jokes, to realize that they're not just funny - they say something deep about LIFE. As a consequence people who dislike animism truly ARE idiots- of course they wouldn't appreciate, for instance, the humour in Sir Edward's anthropological catchphrase 'degeneration has been rather of a local than of a general character', which itself is a cryptic reference to Lucretius's Roman poetry. I'm smirking right now just imagining one of those addlepated simpletons scratching their heads in confusion as Sir Edward's genius unfolds itself on their television screens. What fools... how I pity them. 😂 And yes by the way, I DO have an animism tattoo. And no, you cannot see it. It's for the ladies' eyes only - and even they have to demonstrate that they're within 5 IQ points of my own (preferably lower) beforehand."
+	],
+    CE = [
         "Here we go looby loo, here we go looby light, here we go looby loo, all on a Saturday night... hey-a-oooh, you-a-oooh, does your waifu knooooow, you're going down the roooaad, to see your little husbandoooo?",
         "4 states of matter, used to seduce them: they were traumatized; they were mortified; they were nothing! Think of the word: vote! Those tangle faires must have been in your hair last night: it's decomposing! There's no more ingredients left over; these are pitiful! Well, hello: ...where's the beef?",
-        "Bread, child, we need bread! This is the corporate office policy: we need bread, child, bread now! Why might you be provided with such a hard head, and I with such a hard pelvis? Because we may or may not have been integrated with those animistic (e.g. holstauric) priveleges - that is, if we drink our milk: what little poison to worry about! There's a little something on your face: maybe if you put some bread & milk on it, the catfolk will bite & lick it off.",
         "You're not even human(s), anymore... You'll make a martyr of me! Hmmmmmmm, stoic one, hmmmmmmm: hoist... the jolly roger... Hey-hey, god-mass, ho-ho! The miners you've made have fetished too deep... It's the hard rock blues! Nonetheless, there may be a reward if you can say sludgefilth in 5 languages simultaneously! Erytin - evryting - everything goin'-be-iree, man!",
         "And that, was: my animus... function! Rooooole-plaaaaay... it appears now, that the control group, has confirmed... the contrope! Vibe check! You failed!",
         "We will provide... the signature: to the contract for the grant to the museum park... but wait, Kung Fuhrer, I can walk! Up at the sky; down at the ground; right over there; i'm gonna bounce!",
@@ -110,14 +58,22 @@ const quotes = [
         "How do you multiply the length of a vector by 2? B-b-b-b-baka... b-b-baka, oh... you'll make a gaaaaahhd-lass of me!",
         "While the earth may not currently be flat, the derivative may be considered flat, as the earth, in fact, is getting flat-ter! Thanks a lot, centrifugal force - love your work!",
         "Euler spirals may contain primes, arrowheads may contain metallics! How else to horizontally & vertically scale than this?",
-        "Oh, what a beatiful morning; oh, what a beatiful day; I've got a beautiful feeling; everything's going my way!",
         "Why send people to space? Presumably, their usage of exercise machines should allow some extent of kinetic energy to be converted/stored as electric battery power!", 
-        "Oah puddin', p'tatocat: the little princess... she's just a bae-bee!"
+        "Oah puddin', p'tatocat: the little princess... she's just a bae-bee!",
+		"The Balrog describes the following necrofantasial menu to the Orcs: skin ripped, flesh cut, bones torn (like maple tree-bark), warm beating blood heard with echolocation + viewed through the infrared-spectrum to be ultimately sapped (like maple syrup), and clusters of organs remaining to be handled (like seedy fruit).",
     ],
-    ST = [
+	NE = [
+	
+	],
+	N = [
+		"Bread, child, we need bread! This is the corporate office policy: we need bread, child, bread now! Why might you be provided with such a hard head, and I with such a hard pelvis? Because we may or may not have been integrated with those animistic (e.g. holstauric) priveleges - that is, if we drink our milk: what little poison to worry about! There's a little something on your face: maybe if you put some bread & milk on it, the catfolk will bite & lick it off.",
+	],
+	NG = [
+		"Oh, what a beatiful morning; oh, what a beatiful day; I've got a beautiful feeling; everything's going my way!",
+	],
+    LE = [
         "What's your last name, weirdy? Butterscotch? Inconcievable! Why don't you take a break from your Standford prison experiment: go get a bubble gun, roll up inside a blanket, and give yourself a good ol' 7 chakra massage, as you wish! We must confirm the fact, that this posture would resemble an enormous schwanzschtücker, and that you would have made a yummy sound after putting on the ritz.",
         "Oh, did you go poo-poo on the potty? Goo-goo ga-ga, taco baby; goo-goo ga-ga. Oh-no; I wanna go up in there! No more of that skewer-rattle, until you're old enough for saizuri. Ich bin gut! However long I stay, I will never eat you. No more milk warmed up? Aight, thien... mango lassi for the baby? Guess what, chicken butt, fried and greased, want a piece? Tis' but a scratch! You snooze, you lose. Rock and roll, coo chi-coo! Put on your shooses - that's all she wrote. I'm fifty... and 1 sixth days away from eating the pantry out of commision.", 
-        "The Balrog describes the following necrofantasial menu to the Orcs: skin ripped, flesh cut, bones torn (like maple tree-bark), warm beating blood heard with echolocation + viewed through the infrared-spectrum to be ultimately sapped (like maple syrup), and clusters of organs remaining to be handled (like seedy fruit).",
         "So... how'd you like the play? How'd you like to know my train-trolley-style, hunter-gatherer marketing algorithm? Well, here you have it: the more people I (b/f/k)ill, the more experience I get. Hurrah; the patterns of predator vs prey are in motion: drain the lizard! But where... is the squirrel?",
         "It's deformed! Pickup call! Wrooooong! Not a good gradient fetish. Why did that guy on the sidewalk have to start a hoooorrible white-male-idiot-conference? He oooobviously had to make a rip-off of I am become death, the destroyer of worlds. Yes; yes: I did in fact become a malignant politician upon life's green earth, and followed the Pirate Code! Whether ye be a pimp, or a prostobot, you have: one... rice point. And that's, the meta! What are we going to do, sit around like a bunch of crunchy hippies and not start the ahegao face company? Tuppence, tuppence; I got a rock... it's pretty dirt cheap, if you know what we keep! Thank you, come again!",  
         "Time to get up and make the donuts! Comrade, comrade, so glad to meet you again: there's a paaaarty, at this place, come and get your ice cream! Get in my belly; you got the sugar! Let's have a cook-out! Kaninchen mit salz und pfeffer; barbeque sauce on the lasagna with six cheeses! I'd like some mustard on my biscuits, mm-hm - I like pot-pie, too! What's up wichu, man? Hook a brother up; gimme some! A fire: now that's what i'm talking about!",
@@ -145,16 +101,18 @@ const quotes = [
         "You're my little potato, you're my little potato, you're my little potato, they dug you up, you come from underground!",
         "Stepping out on, the left, foot, stepping out on, the right, foot... I-I-I-I-I-want the-knife! I, I, I, I, I want, the knife!",
         "Brutal methods of execution have been recorded as follows: crucifixion, blood eagle, live burial, head-through-the-noose-on-fire...",
-        "Hezekiel's whisker torture... ag ug-ug-ug-ug-ug! Get your chin-music on! Fo to the sho: big pimpin'!",
+        "Hezekiel's whisker torture... ag ug-ug-ug-ug-ug! Get your chin-music on! Oh look: a big pimpin' astronaut on a wheelchair moving at Mach 1.375!",
         "Meow means hungry, meow means thirsty, meow is the world of communication.",
-        "Crucified; skinhead, skinhead! Swizzleberry swirl",
-        "Hear-Hear!",
+        "Crucified; skinhead, skinhead! Swizzleberry swirl!",
         "Oh, friend... dear friend, you are so mercifully free of the ravages of intelligence - and, yes, I know to be sorry to say such nice things.",
         "100 years from now when I'm dying on a hospital bed and I'm asked what my biggest regret was it will be that I turned on my internet and scrolled through the internet on that fateful day... I will never be able to recover from this. No amount of therapy will save me. No amount of prescription pills will let me recover. I am a shell. This memory is so bad my brain is physically rejecting it and now I have a headache every time I think about it. Why did you post this, thinking it was a good idea? You've permanently ruined my life because of this, I hope you're happy. I hope that one day this gets branded as a war crime and you get hauled off to prison, never to see the light of day again. The fact that you're already not in a psych ward for insanity is so baffling I have lost all faith in every kind of justice system. If you subscribe to any religion, you'd best spend the rest of your time atoning for this ultimate sin. Have a terrible day, I hope this creation of yours haunts you in your dreams.",
         "Not funny I didn't laugh. Your joke is so bad I would have preferred the joke went over my head and you gave up re-telling me the joke. To be honest this is a horrid attempt at trying to get a laugh out of me. Not a chuckle, not a hehe, not even a subtle burst of air out of my esophagus. Science says before you laugh your brain preps your face muscles but I didn't even feel the slightest twitch. 0/10 this joke is so bad I cannot believe anyone legally allowed you to be creative at all. The amount of brain power you must have put into that joke has the potential to power every house on Earth. Get a personality and learn how to make jokes, read a book. I'm not saying this to be funny I genuinely mean it on how this is just bottom barrel embarrassment at comedy. You've single handedly killed humor and every comedic act on the planet. I'm so disappointed that society has failed as a whole in being able to teach you how to be funny. Honestly if I put in all my power and time to try and make your joke funny it would require Einstein himself to build a device to strap me into so I can be connected to the energy of a billion stars to do it, and even then all that joke would get from people is a subtle scuff. You're lucky I still have the slightest of empathy for you after telling that joke otherwise I would have committed every war crime in the book just to prevent you from attempting any humor ever again. We should put that joke in text books so future generations can be wary of becoming such an absolute comedic failure. Im disappointed, hurt, and outright offended that my precious time has been wasted in my brain understanding that joke. In the time that took I was planning on helping kids who have been orphaned, but because of that you've waisted my time explaining the obscene integrity of your terrible attempt at comedy. Now those kids are suffering without meals and there's nobody to blame but you. I hope you're happy with what you have done and I truly hope you can move on and learn from this piss poor attempt",
-        "To be fair, you have to have a very high intelligence score to understand animism. The humor is extremely subtle, and without a solid grasp of historical theology most of the jokes will go over a typical viewer's head. There's also Sir Edward Taylor's anthropological outlook, which is deftly woven into his characterisation - his personal philosophy draws heavily from  literature, for instance. The fans understand this stuff; they have the intellectual capacity to truly appreciate the depths of these jokes, to realize that they're not just funny - they say something deep about LIFE. As a consequence people who dislike animism truly ARE idiots- of course they wouldn't appreciate, for instance, the humour in Sir Edward's anthropological catchphrase 'degeneration has been rather of a local than of a general character', which itself is a cryptic reference to Lucretius's Roman poetry. I'm smirking right now just imagining one of those addlepated simpletons scratching their heads in confusion as Sir Edward's genius unfolds itself on their television screens. What fools... how I pity them. 😂 And yes by the way, I DO have an animism tattoo. And no, you cannot see it. It's for the ladies' eyes only - and even they have to demonstrate that they're within 5 IQ points of my own (preferably lower) beforehand."
-    ],
-    SF = [
+		"Maybe, if the geneva convention permits, we can try to hire a suicide forest chainsaw seppuku drill seargent - I mean, live organ donation tutor: kidney, lung, testicle, arm, leg! Such beautiful assets plus vroom-vroom makes a truly macabre museum to behold!"
+	]
+	LN = [
+	
+	],
+    LG = [
         "Pieces of huckleberry taffy? Oof-tah! Bowls of mini wheats & honey nut cheerios? Cute, cute! Glasses of grape juice, orange juice, chocolate milk, and pink lemonade? You're kidding! Well, if you're starving, how about some chocolate chip pancakes with chokecherry syrup? A good cooking! Guten apetit, thank you for our food, guten apetit!",
         "You mean to say, that you were all, alone? Interesting, if... true. Well I uhh... went to the store... to acquire the... cooking components... for the upcoming complex plot - and yes, we do like, bananas; because they, have no bones, today! Catch a falling star, and put it in your pocket, never let it fall away! Each star's a pool of water, cool water; and with the dawn I'll wake and yawn, and carry on to water; cool, clear water. Pass the shoe, pass the d'ree d'rah d'ree d'ray; pass the shoe, the shoe, d'ree d'rah d'ree d'ray! Uh-oh, uh-oh; What the heck is that; what the heck is that? Black hair with orange hair highlights, black eyes that sparkle like beetles, a voice that crackles, enveloped in smoky scents... a campfire waifu? You mystify me!? We do not hold ourselves accountable: it's an illusion! Get outta there, you're tripping balls! How negligee: it is not wise to project the posterior upon the sky. Get... get out of, of, of... of town! I triple dog dare you: if you go, you get the house, the boat, the car, the plane! Can't you hear them on the far-away waters? The looooons! The tower, of power! Would you like some... propane for your train? Sure wish we had some; but how about some... sauerkraut & brussel-sprout ice cream: yes, dear, i'll just have one scoop.",
         "Have you ever felt, that thing in your heart, that there may be this infinity sign out there in the sky, a god-head volume? That's called: the god-mass of dune.",
@@ -164,9 +122,8 @@ const quotes = [
         "Give your meat a good ol' rub... while I'll be in my studio, studio, working up some, art...",
         "Knowledge is power.",
         "Give us your counsel!",
-        "Your mind includes multiple parts, and not all of them work together.",
+        "Your mind has multiple parts, and not all of them work together",
         "Why don't you stop pretending to be in the para-olympics? They want you to give them a narrative!",
-        "Don't harsh my gig so hardcore, 'k cruster?"
         "I don't know half of you half as well as I should like; and I like less than half of you half as well as you deserve.",
         "Oh my goodness! Well, you're used to it! You'd better believe it!",
         "Get with the program, rabbit! No, you don't have to delete it.",
@@ -178,16 +135,4 @@ const quotes = [
         "You drink owie-pop, I drink owie-pop, we all drink owie-pop!",
         "Let's give it up for l'Hopital! Tabular integration!"
     ]
-];
-const directions = [
-    createDirection("1", "G", "fire", "celestial/angel"),
-    createDirection("2", "C", "air", "fey/lycanthrope/dragon"),
-    createDirection("3", "E", "water", "fiend/daemon/undead"),
-    createDirection("4", "L", "earth", "construct/cybrid")
-];
-const quarters = [
-    createQuarter("1", ["elven", "halfling", "gnome"], ["onshore wind", "solar", "solar wind"], "air/space force"),
-    createQuarter("2", ["orc", "goblin"], ["offshore wind reactors", "nuclear fission"], "navy"),
-    createQuarter("3", ["dwarven"], ["hydroelectric", "tidal/wave", "biofuel"], "coast guard + marines"),
-    createQuarter("4", [], ["geothermic", "nuclear fusion", "biomass", "dyson swarm", "dyson sphere"], "army")
 ];
